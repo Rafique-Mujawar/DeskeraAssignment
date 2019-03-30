@@ -1,0 +1,68 @@
+package rafique.mujawar.deskera.utils;
+
+import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import rafique.mujawar.deskera.BuildConfig;
+
+/**
+ * @author Rafique Mujawar
+ * Date 29-03-2019
+ */
+public class DeskeraUtils {
+
+  public static Uri generateTimeStampPhotoFileUri(Context context) {
+    File directory = getPhotoDirectory();
+    Uri photoFileUri = null;
+    if (directory != null) {
+      File photoFile =
+          new File(directory, System.currentTimeMillis() + DeskeraConstants.JPG_EXTENSION);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        photoFileUri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID +
+            DeskeraConstants.PROVIDER, photoFile);
+      } else {
+        photoFileUri = Uri.fromFile(photoFile);
+      }
+    }
+    return photoFileUri;
+  }
+
+  private static File getPhotoDirectory() {
+    File outputDir = null;
+    String externalStorageStagte = Environment.getExternalStorageState();
+    if (externalStorageStagte.equals(Environment.MEDIA_MOUNTED)) {
+      String path = Environment.getExternalStorageDirectory() + DeskeraConstants.IMAGE_FOLDER;
+      outputDir = new File(path);
+      if (!outputDir.exists()) {
+        outputDir = new File(Environment.getExternalStorageDirectory().getPath()
+            + DeskeraConstants.IMAGE_FOLDER);
+        outputDir.mkdirs();
+      }
+    }
+    return outputDir;
+  }
+
+  public static String loadJSONFromAsset(Activity activity, String file) {
+    String json = null;
+    try {
+      InputStream is = activity.getAssets().open(file);
+      int size = is.available();
+      byte[] buffer = new byte[size];
+      is.read(buffer);
+      is.close();
+      json = new String(buffer, "UTF-8");
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      return null;
+    }
+    return json;
+  }
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:id="@+id/main_content"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context="rafique.mujawar.deskera.activities.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/tab_profile_selector"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/tab_items_selector"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/tab_favorite_selector"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/tab_table_selector"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/tab_setting_selector"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+        </android.support.design.widget.TabLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_above="@id/appbar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</RelativeLayout>

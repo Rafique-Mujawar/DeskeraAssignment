@@ -1,0 +1,95 @@
+{
+  "items": [
+    {
+      "title": "Beavers",
+      "description": "Beavers are sold",
+      "imageHref": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/220px-American_Beaver.jpg",
+      "isFavourite": false,
+      "category": "A"
+    },
+    {
+      "title": "Flag",
+      "description": "Flag is flag",
+      "imageHref": "http://images.findicons.com/files/icons/662/world_flag/128/flag_of_canada.png",
+      "isFavourite": false,
+      "category": "B"
+    },
+    {
+      "title": "Transportation",
+      "description": "It is a well known",
+      "imageHref": "http://1.bp.blogspot.com/_VZVOmYVm68Q/SMkzZzkGXKI/AAAAAAAAADQ/U89miaCkcyo/s400/the_golden_compass_still.jpg",
+      "isFavourite": true,
+      "category": "A"
+    },
+    {
+      "title": "Hockey Night in Canada",
+      "description": "These Saturday night",
+      "imageHref": "http://fyimusic.ca/wp-content/uploads/2008/06/hockey-night-in-canada.thumbnail.jpg",
+      "isFavourite": true,
+      "category": "B"
+    },
+    {
+      "title": "Eh",
+      "description": "A chiefly Canadian ",
+      "imageHref": "http://static.guim.co.uk/sys-images/Music/Pix/site_furniture/2007/04/19/avril_lavigne.jpg",
+      "isFavourite": false,
+      "category": "B"
+    },
+    {
+      "title": "Housing",
+      "description": "Warmer than thoufgt.",
+      "imageHref": "http://icons.iconarchive.com/icons/iconshock/alaska/256/Igloo-icon.png",
+      "isFavourite": false,
+      "category": "A"
+    },
+    {
+      "title": "Public Shame",
+      "description": " Sadly it's true.",
+      "imageHref": "http://static.guim.co.uk/sys-images/Music/Pix/site_furniture/2007/04/19/avril_lavigne.jpg",
+      "isFavourite": true,
+      "category": "A"
+    },
+    {
+      "title": "Space Program",
+      "description": "launch a man to the moon.",
+      "imageHref": "",
+      "isFavourite": false,
+      "category": "B"
+    },
+    {
+      "title": "Meese",
+      "description": "A moose 700kg",
+      "imageHref": "http://caroldeckerwildlifeartstudio.net/wp-content/uploads/2011/04/IMG_2418%20majestic%20moose%201%20copy%20(Small)-96x96.jpg",
+      "isFavourite": false,
+      "category": "A"
+    },
+    {
+      "title": "Geography",
+      "description": "It's really big.",
+      "imageHref": "",
+      "isFavourite": true,
+      "category": "A"
+    },
+    {
+      "title": "Kittens...",
+      "description": "Éare illegal. Cats are fine.",
+      "imageHref": "http://www.donegalhimalayans.com/images/That%20fish%20was%20this%20big.jpg",
+      "isFavourite": false,
+      "category": "B"
+    },
+    {
+      "title": "Mounties",
+      "description": "They are the law. They are also Canada's foreign espionage service. Subtle.",
+      "imageHref": "http://3.bp.blogspot.com/__mokxbTmuJM/RnWuJ6cE9cI/AAAAAAAAATw/6z3m3w9JDiU/s400/019843_31.jpg",
+      "isFavourite": false,
+      "category": "A"
+    },
+    {
+      "title": "Language",
+      "description": "Nous parlons tous les langues importants.",
+      "imageHref": "http://3.bp.blogspot.com/__mokxbTmuJM/RnWuJ6cE9cI/AAAAAAAAATw/6z3m3w9JDiU/s400/019843_31.jpg",
+      "isFavourite": true,
+      "category": "B"
+    }
+  ]
+}
