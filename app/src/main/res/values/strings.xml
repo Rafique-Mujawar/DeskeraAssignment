@@ -35,4 +35,12 @@
     <string name="label_category_a">Category A</string>
     <string name="label_category_b">Category B</string>
     <string name="toolbar">Toolbar</string>
+    <string name="temprature_display">Temperature Display unit</string>
+    <string name="notifications">Notifications</string>
+    <string name="probation_date">Date Probation Ends</string>
+    <string name="view_details">View Details</string>
+    <string name="sound">Sound</string>
+    <string name="date_not_available">Date not available</string>
+    <string name="label_farenheit">Farenheit</string>
+    <string name="label_celcius">Celcius</string>
 </resources>

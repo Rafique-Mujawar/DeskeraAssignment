@@ -45,8 +45,7 @@ public class AllItemsFragment extends BaseItemFragment {
   }
 
   private void loadData() {
-    List<DeskeraItem> items = DatabaseManager.getInstance().getDatabase().getDeskeraItemDao()
-        .getAll();
+    List<DeskeraItem> items = DatabaseManager.getDatabase().getDeskeraItemDao().getAll();
     updateAdapter(items);
   }
 }

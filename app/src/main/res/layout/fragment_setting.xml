@@ -1,14 +1,140 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
     tools:context="rafique.mujawar.deskera.fragments.SettingsFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d16dp"
         android:text="@string/setting"
-        android:textSize="24sp" />
+        android:textSize="@dimen/s16sp" />
 
-</FrameLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/d16dp"
+            android:text="@string/temprature_display"
+            android:textSize="@dimen/s16sp" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/d16dp"
+            android:text="@string/probation_date"
+            android:textSize="@dimen/s16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d16dp">
+
+        <TextView
+            android:gravity="start|center_vertical"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/switch_sound"
+            android:layout_width="wrap_content"
+            android:text="@string/sound"
+            android:textSize="@dimen/s16sp" />
+
+        <Switch
+            android:id="@+id/switch_sound"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </RelativeLayout>
+
+    <View
+        android:layout_height="48dp"
+        android:layout_width="match_parent" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d16dp">
+
+
+        <TextView
+            android:gravity="start|center_vertical"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/switch_notification"
+            android:layout_width="wrap_content"
+            android:text="@string/notifications"
+            android:textSize="@dimen/s16sp" />
+
+        <Switch
+            android:checked="false"
+            android:id="@+id/switch_notification"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/tv_probation_date"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/d16dp"
+            android:text="@string/probation_date"
+            android:textSize="@dimen/s16sp" />
+
+        <TextView
+            android:id="@+id/tv_probation_date"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/d16dp"
+            android:text="@string/probation_date"
+            android:textSize="@dimen/s16sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_height="48dp"
+        android:layout_width="match_parent" />
+
+    <TextView
+        android:background="@color/white"
+        android:id="@+id/tv_view_details"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d16dp"
+        android:text="@string/view_details"
+        android:textSize="@dimen/s16sp"
+        android:textStyle="bold" />
+</LinearLayout>

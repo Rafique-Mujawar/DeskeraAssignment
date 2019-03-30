@@ -81,13 +81,13 @@ public abstract class BaseItemFragment extends Fragment implements DeskeraItemLi
 
   @Override
   public void onDeskeraItemLiked(DeskeraItem item) {
-    DatabaseManager.getInstance().getDatabase().getDeskeraItemDao().updateItem(item);
+    DatabaseManager.getDatabase().getDeskeraItemDao().updateItem(item);
     BusProvider.getInstance().post(new FavouriteListChangedEvent(TAG));
   }
 
   @Override
   public void onDeskeraItemUnLiked(DeskeraItem item) {
-    DatabaseManager.getInstance().getDatabase().getDeskeraItemDao().updateItem(item);
+    DatabaseManager.getDatabase().getDeskeraItemDao().updateItem(item);
     BusProvider.getInstance().post(new FavouriteListChangedEvent(TAG));
   }
 

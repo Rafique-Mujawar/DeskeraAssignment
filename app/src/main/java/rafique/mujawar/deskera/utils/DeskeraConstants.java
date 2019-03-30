@@ -10,10 +10,12 @@ public interface DeskeraConstants {
   String PROVIDER = ".provider";
   String IMAGE_FOLDER = "/DeskeraProfile/";
   String IMAGE_TYPE = "image/*";
+  String ARG_UNIT = "arg_unit";
 
   interface RequestCodes {
     int REQUEST_CAMERA = 1234;
     int REQUEST_GALLERY = 9162;
     int PERMISSIONS_REQUEST_WRITE_STORAGE = 778;
+    int REQUEST_TEMPERATURE_UNIT = 323;
   }
 }

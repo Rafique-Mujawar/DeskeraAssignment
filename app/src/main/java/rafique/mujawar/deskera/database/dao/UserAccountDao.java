@@ -18,7 +18,7 @@ public interface UserAccountDao {
   void addUserAccount(UserAccount account);
 
   @Query("SELECT * FROM UserAccount WHERE id =:id")
-  UserAccount getUserAccount(String id);
+  UserAccount getUserAccount(long id);
 
   @Update
   void updateUserAccount(UserAccount account);

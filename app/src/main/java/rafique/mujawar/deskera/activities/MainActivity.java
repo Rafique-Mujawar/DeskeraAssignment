@@ -13,8 +13,10 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import rafique.mujawar.deskera.R;
+import rafique.mujawar.deskera.Temperature;
 import rafique.mujawar.deskera.database.DatabaseManager;
 import rafique.mujawar.deskera.database.entities.DeskeraItem;
+import rafique.mujawar.deskera.database.entities.UserAccount;
 import rafique.mujawar.deskera.database.json.DeskeraItemListData;
 import rafique.mujawar.deskera.database.json.FruitsData;
 import rafique.mujawar.deskera.fragments.FavoritesFragment;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void loadJsonToDatabase() {
-    List<DeskeraItem> items = DatabaseManager.getInstance().getDatabase().getDeskeraItemDao()
+    List<DeskeraItem> items = DatabaseManager.getDatabase().getDeskeraItemDao()
         .getAll();
     if (null == items || items.isEmpty()) {
       Gson gson = new Gson();
@@ -64,12 +66,13 @@ public class MainActivity extends AppCompatActivity {
       DeskeraItemListData data = gson.fromJson(json, DeskeraItemListData.class);
       json = DeskeraUtils.loadJSONFromAsset(this, "fruits.json");
       FruitsData fruitsData = gson.fromJson(json, FruitsData.class);
-      DatabaseManager.getInstance()
-          .getDatabase()
-          .getDeskeraItemDao()
-          .insertAllItems(data.getItems());
-      DatabaseManager.getInstance().getDatabase().getTabletTabItemDao().insertMultiples(fruitsData
-          .getFruits());
+      DatabaseManager.getDatabase().getDeskeraItemDao().insertAllItems(data.getItems());
+      DatabaseManager.getDatabase().getTabletTabItemDao().insertMultiples(fruitsData.getFruits());
+      UserAccount account = new UserAccount();
+      account.setId(0);
+      account.setName("Rafique");
+      account.setTemperatureUnit(Temperature.CELCIUS.getValue());
+      DatabaseManager.getDatabase().getUserAccountDao().addUserAccount(account);
     }
   }
 
