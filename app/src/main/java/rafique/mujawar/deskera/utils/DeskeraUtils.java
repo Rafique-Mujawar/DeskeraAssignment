@@ -10,8 +10,14 @@ import android.support.v4.content.FileProvider;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import rafique.mujawar.deskera.BuildConfig;
+import rafique.mujawar.deskera.DeskeraApplication;
+import rafique.mujawar.deskera.R;
 
 /**
  * @author Rafique Mujawar
@@ -64,5 +70,49 @@ public class DeskeraUtils {
       return null;
     }
     return json;
+  }
+
+
+  public static String getDateDifference(long start, long end) {
+
+    Calendar startCalendar = new GregorianCalendar();
+    startCalendar.setTimeInMillis(start);
+    Calendar endCalendar = new GregorianCalendar();
+    endCalendar.setTimeInMillis(end);
+
+    int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+    int diffMonth =
+        diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+    int days = endCalendar.get(Calendar.DAY_OF_MONTH) - startCalendar.get(Calendar.DAY_OF_MONTH);
+    return DeskeraApplication.getAppContext()
+        .getString(R.string.probation_duration, diffMonth, days);
+  }
+
+  public static String getProbationLength(long start, long end) {
+    Calendar startCalendar = new GregorianCalendar();
+    startCalendar.setTimeInMillis(start);
+    Calendar endCalendar = new GregorianCalendar();
+    endCalendar.setTimeInMillis(end);
+
+    int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+    int diffMonth =
+        diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+    int days = endCalendar.get(Calendar.DAY_OF_MONTH) - startCalendar.get(Calendar.DAY_OF_MONTH);
+
+    if (diffMonth > 6 || diffMonth == 6 && days > 0) {
+      return DeskeraApplication.getAppContext().getString(R.string.more_than_six_months);
+    } else if (diffMonth == 6 && days == 0) {
+      return DeskeraApplication.getAppContext().getString(R.string.six_months);
+    } else {
+      return DeskeraApplication.getAppContext().getString(R.string.less_than_six_months);
+    }
+  }
+
+  public static String getDateFromMillis(long millis) {
+    SimpleDateFormat formatter =
+        new SimpleDateFormat(DeskeraConstants.DESKERA_DATE_FORMAT, Locale.getDefault());
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(millis);
+    return formatter.format(calendar.getTime());
   }
 }

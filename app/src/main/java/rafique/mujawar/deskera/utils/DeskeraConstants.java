@@ -11,6 +11,13 @@ public interface DeskeraConstants {
   String IMAGE_FOLDER = "/DeskeraProfile/";
   String IMAGE_TYPE = "image/*";
   String ARG_UNIT = "arg_unit";
+  String DESKERA_DATE_FORMAT = "dd/M/yyyy";
+
+  long SECONDS_TO_MILLIS = 1000;
+  long MINUTES_TO_MILLIS = SECONDS_TO_MILLIS * 60;
+  long HOURS_TO_MILLIS = MINUTES_TO_MILLIS * 60;
+  long DAYS_TO_MILLIS = HOURS_TO_MILLIS * 24;
+  String ARG_DATE_IN_MILLS = "ARG_DATE_IN_MILLS";
 
   interface RequestCodes {
     int REQUEST_CAMERA = 1234;

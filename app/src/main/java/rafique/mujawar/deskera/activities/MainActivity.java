@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -28,6 +29,8 @@ import rafique.mujawar.deskera.utils.DeskeraUtils;
 
 public class MainActivity extends AppCompatActivity {
 
+
+  private static final String TAG = MainActivity.class.getName();
   private Fragment mProfileFragment;
   private Fragment mSettingFragment;
   private Fragment mItemsFragment;
@@ -71,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
       UserAccount account = new UserAccount();
       account.setId(0);
       account.setName("Rafique");
-      account.setTemperatureUnit(Temperature.CELCIUS.getValue());
+      account.setTemperatureUnit(Temperature.CELSIUS.getValue());
       DatabaseManager.getDatabase().getUserAccountDao().addUserAccount(account);
+      Log.i(TAG, "loadJsonToDatabase: account added" );
     }
   }
 

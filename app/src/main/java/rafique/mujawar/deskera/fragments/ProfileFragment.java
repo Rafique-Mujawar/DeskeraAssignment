@@ -2,6 +2,7 @@ package rafique.mujawar.deskera.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,11 +15,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,13 +31,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.Calendar;
+
 import rafique.mujawar.deskera.R;
+import rafique.mujawar.deskera.database.DatabaseManager;
+import rafique.mujawar.deskera.database.entities.UserAccount;
 import rafique.mujawar.deskera.utils.ActivityNavigator;
 import rafique.mujawar.deskera.utils.DeskeraConstants;
 import rafique.mujawar.deskera.utils.DeskeraUtils;
 
-public class ProfileFragment extends Fragment
-    implements View.OnClickListener, TextView.OnEditorActionListener {
+public class ProfileFragment extends Fragment implements View.OnClickListener,
+    TextView.OnEditorActionListener, DatePickerDialog.OnDateSetListener {
 
   private static final String TAG = ProfileFragment.class.getName();
 
@@ -44,6 +51,7 @@ public class ProfileFragment extends Fragment
   private ImageView mIvProfileImage;
   private EditText mEtUserName, mEtEmail, mEtHobby, mEtDOJ;
   private Uri mCameraImageUti;
+  private UserAccount mUserAccount;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +85,15 @@ public class ProfileFragment extends Fragment
   }
 
   private void fetchData() {
-
+    mUserAccount = DatabaseManager.getDatabase().getUserAccountDao().getUserAccount(0);
+    if (null != mUserAccount) {
+      mEtUserName.setText(mUserAccount.getName());
+      mEtEmail.setText(mUserAccount.getEmail());
+      mEtHobby.setText(mUserAccount.getHobbies());
+      if (0 != mUserAccount.getDateOfJoining()) {
+        mEtDOJ.setText(DeskeraUtils.getDateFromMillis(mUserAccount.getDateOfJoining()));
+      }
+    }
   }
 
   private void setProfileImage(Uri uri) {
@@ -121,28 +137,50 @@ public class ProfileFragment extends Fragment
         //TODO: update
         switch (v.getId()) {
           case R.id.et_user:
-            Log.i(TAG, "onEditorAction: et_user");
+            mUserAccount.setName(v.getText().toString().trim());
+            updateAccountDetails();
             break;
 
           case R.id.et_email:
-            Log.i(TAG, "onEditorAction: et_email");
+            //TODO: verify email
+            if (Patterns.EMAIL_ADDRESS.matcher(v.getText().toString().trim()).matches()) {
+              updateAccountDetails();
+            } else {
+              mEtEmail.setError("Invalid email format.");
+            }
             break;
 
           case R.id.et_hobby:
-            Log.i(TAG, "onEditorAction: et_hobby");
+            mUserAccount.setHobbies(v.getText().toString().trim());
+            updateAccountDetails();
             break;
 
           case R.id.et_doj:
-            Log.i(TAG, "onEditorAction: et_doj");
+            DatePickerFragment datePickerFragment =
+                DatePickerFragment.getInstance(this, mUserAccount
+                    .getProbationEndDate());
+            datePickerFragment.show(getActivity().getSupportFragmentManager(), DatePickerFragment
+                .TAG);
             break;
 
         }
-      } else {
-        v.setError(getString(R.string.err_null_doj));
       }
       return true;
     }
     return false;
+  }
+
+  @Override
+  public void onDateSet(DatePicker view, int year, int month, int day) {
+    // Do something with the date chosen by the user
+    Log.i(TAG, "onDateSet: ");
+    //TODO: check for probation data
+    final Calendar c = Calendar.getInstance();
+    c.set(year, month, day);
+    long newDate = c.getTimeInMillis();
+    mUserAccount.setDateOfJoining(newDate);
+    DatabaseManager.getDatabase().getUserAccountDao().updateUserAccount(mUserAccount);
+    mEtDOJ.setText(DeskeraUtils.getDateFromMillis(newDate));
   }
 
   @Override
@@ -248,5 +286,9 @@ public class ProfileFragment extends Fragment
     bottomSheetDialog.findViewById(R.id.tv_camera).setOnClickListener(listener);
     bottomSheetDialog.findViewById(R.id.tv_gallery).setOnClickListener(listener);
     bottomSheetDialog.findViewById(R.id.closeBtn).setOnClickListener(listener);
+  }
+
+  private void updateAccountDetails() {
+    DatabaseManager.getDatabase().getUserAccountDao().updateUserAccount(mUserAccount);
   }
 }

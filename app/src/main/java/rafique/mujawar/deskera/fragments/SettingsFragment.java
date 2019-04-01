@@ -1,30 +1,36 @@
 package rafique.mujawar.deskera.fragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 import rafique.mujawar.deskera.R;
 import rafique.mujawar.deskera.database.DatabaseManager;
 import rafique.mujawar.deskera.database.entities.UserAccount;
 import rafique.mujawar.deskera.utils.ActivityNavigator;
 import rafique.mujawar.deskera.utils.DeskeraConstants;
+import rafique.mujawar.deskera.utils.DeskeraUtils;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener,
-    CompoundButton.OnCheckedChangeListener {
+    CompoundButton.OnCheckedChangeListener, DatePickerDialog.OnDateSetListener {
 
+  private static final String TAG = SettingsFragment.class.getName();
   private TextView tvTemperature, tvProbationDate;
   private Switch soundSwitch, notificationSwitch;
-  private UserAccount mUserAccount;
+  private static UserAccount mUserAccount;
 
   public SettingsFragment() {
   }
@@ -59,8 +65,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
     mUserAccount = DatabaseManager.getDatabase().getUserAccountDao().getUserAccount(0);
     tvTemperature.setText(mUserAccount.getTemperatureUnit());
     String date = getString(R.string.date_not_available);
-    if (TextUtils.isEmpty(mUserAccount.getProbationEndDate())) {
-      date = mUserAccount.getProbationEndDate();
+    if (0 != mUserAccount.getProbationEndDate()) {
+      date = DeskeraUtils.getDateFromMillis(mUserAccount.getProbationEndDate());
     }
     tvProbationDate.setText(date);
     soundSwitch.setChecked(mUserAccount.isSoundOn);
@@ -83,9 +89,25 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
             .RequestCodes.REQUEST_TEMPERATURE_UNIT);
         break;
       case R.id.tv_probation_date:
-        //TODO: launch date picker
+        DatePickerFragment datePickerFragment = DatePickerFragment.getInstance(this, mUserAccount
+            .getProbationEndDate());
+        datePickerFragment.show(getActivity().getSupportFragmentManager(), DatePickerFragment.TAG);
         break;
     }
+  }
+
+  @Override
+  public void onDateSet(DatePicker view, int year, int month, int day) {
+    // Do something with the date chosen by the user
+    Log.i(TAG, "onDateSet: ");
+
+    //TODO:: check for joining date
+    final Calendar c = Calendar.getInstance();
+    c.set(year, month, day);
+    long newDate = c.getTimeInMillis();
+    mUserAccount.setProbationEndDate(newDate);
+    DatabaseManager.getDatabase().getUserAccountDao().updateUserAccount(mUserAccount);
+    tvProbationDate.setText(DeskeraUtils.getDateFromMillis(newDate));
   }
 
   /**
@@ -98,11 +120,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
     switch (buttonView.getId()) {
       case R.id.switch_notification:
-        mUserAccount.setSoundOn(isChecked);
+        mUserAccount.setNotificationOn(isChecked);
         updateDatabase();
         break;
       case R.id.switch_sound:
-        mUserAccount.setNotificationOn(isChecked);
+        mUserAccount.setSoundOn(isChecked);
         updateDatabase();
         break;
     }

@@ -22,9 +22,9 @@ public class ActivityNavigator {
     context.startActivity(new Intent(context, MainActivity.class));
   }
 
-  public static void launchTemperatureUnitActivity(Fragment fragment,int requestCode) {
+  public static void launchTemperatureUnitActivity(Fragment fragment, int requestCode) {
     fragment.startActivityForResult(new Intent(fragment.getContext(), SelectTemperatureUnitActivity
-        .class),requestCode);
+        .class), requestCode);
   }
 
   public static void launchSettingDetailsActivity(Context context) {

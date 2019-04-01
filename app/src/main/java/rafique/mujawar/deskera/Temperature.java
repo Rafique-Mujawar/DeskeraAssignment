@@ -5,7 +5,7 @@ package rafique.mujawar.deskera;
  * Date 30-03-2019
  */
 public enum Temperature {
-  FARENHEIT("Farenheit"), CELCIUS("Celcius");
+  FAHRENHEIT("Fahrenheit"), CELSIUS("Celsius");
   private final String value;
 
   Temperature(String value) {

@@ -29,10 +29,10 @@ public class SelectTemperatureUnitActivity extends AppCompatActivity implements
   public void onClick(View v) {
     switch (v.getId()) {
       case R.id.tv_celcius:
-        publishData(Temperature.CELCIUS);
+        publishData(Temperature.CELSIUS);
         break;
       case R.id.tv_Fareneit:
-        publishData(Temperature.FARENHEIT);
+        publishData(Temperature.FAHRENHEIT);
         break;
     }
   }

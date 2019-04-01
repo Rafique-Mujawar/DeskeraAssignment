@@ -15,7 +15,7 @@
         android:name=".DeskeraApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:label="@string/app_name"
             android:name=".activities.SplashActivity"
@@ -25,12 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.TableEditActivity" />
         <activity android:name=".activities.TableItemDetailsActivity" />
         <activity android:name=".activities.SelectTemperatureUnitActivity" />
+        <activity android:name=".activities.SettingDetailsActivity" />
 
 
         <provider

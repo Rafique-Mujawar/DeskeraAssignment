@@ -35,12 +35,20 @@
     <string name="label_category_a">Category A</string>
     <string name="label_category_b">Category B</string>
     <string name="toolbar">Toolbar</string>
-    <string name="temprature_display">Temperature Display unit</string>
+    <string name="temperature_display">Temperature Display unit</string>
     <string name="notifications">Notifications</string>
     <string name="probation_date">Date Probation Ends</string>
     <string name="view_details">View Details</string>
     <string name="sound">Sound</string>
     <string name="date_not_available">Date not available</string>
-    <string name="label_farenheit">Farenheit</string>
-    <string name="label_celcius">Celcius</string>
+    <string name="label_fahrenheit">Fahrenheit</string>
+    <string name="label_celsius">Celsius</string>
+    <string name="label_probation_duration">Probation Duration</string>
+    <string name="label_date_of_permanent">Date of Permanent</string>
+    <string name="label_probation_length">Probation Length</string>
+    <string name="probation_duration">%d Months and %d days</string>
+    <string name="more_than_six_months">More than 6 months</string>
+    <string name="six_months">Exactly 6 months</string>
+    <string name="less_than_six_months">Less than 6 months</string>
+    <string name="label_na">NA</string>
 </resources>

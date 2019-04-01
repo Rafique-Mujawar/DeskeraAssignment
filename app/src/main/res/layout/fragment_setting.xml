@@ -8,11 +8,11 @@
     <TextView
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_width="match_parent"
-        android:padding="@dimen/d16dp"
         android:text="@string/setting"
-        android:textSize="@dimen/s16sp" />
+        android:textSize="@dimen/s22sp"
+        android:textStyle="bold" />
 
 
     <RelativeLayout
@@ -28,7 +28,7 @@
             android:layout_toStartOf="@id/tv_temperature"
             android:layout_width="wrap_content"
             android:padding="@dimen/d16dp"
-            android:text="@string/temprature_display"
+            android:text="@string/temperature_display"
             android:textSize="@dimen/s16sp" />
 
         <TextView

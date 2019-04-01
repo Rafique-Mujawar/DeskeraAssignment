@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:padding="@dimen/d6dp"
-        android:text="@string/label_farenheit" />
+        android:text="@string/label_fahrenheit" />
 
     <TextView
         android:background="@drawable/rectangular_colored_border"
@@ -26,5 +26,5 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:padding="@dimen/d6dp"
-        android:text="@string/label_celcius" />
+        android:text="@string/label_celsius" />
 </LinearLayout>

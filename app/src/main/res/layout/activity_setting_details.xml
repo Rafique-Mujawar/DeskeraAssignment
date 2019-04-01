@@ -1,9 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
+    android:layout_marginEnd="@dimen/d8dp"
+    android:layout_marginStart="@dimen/d8dp"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.SettingDetailsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/label_username" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/label_email" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/label_doj" />
+
+        <TextView
+            android:id="@+id/tvDoj"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/temperature_display" />
+
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/sound" />
+
+        <TextView
+            android:id="@+id/tvSound"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/notifications" />
+
+        <TextView
+            android:id="@+id/tvNotification"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/probation_date" />
+
+        <TextView
+            android:id="@+id/tvProbationEnd"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/label_probation_duration" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/label_date_of_permanent" />
+
+        <TextView
+            android:id="@+id/tvPermanentDate"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/d8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:text="@string/label_probation_length" />
+
+        <TextView
+            android:id="@+id/tvProbationLength"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

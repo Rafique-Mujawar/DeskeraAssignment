@@ -20,7 +20,7 @@ public class UserAccount {
   public String email;
 
   @ColumnInfo
-  public String dateOfJoining;
+  public long dateOfJoining;
 
   @ColumnInfo
   public String temperatureUnit;
@@ -35,16 +35,7 @@ public class UserAccount {
   public boolean isNotificationOn;
 
   @ColumnInfo
-  public String probationEndDate;
-
-  @ColumnInfo
-  public String duration;
-
-  @ColumnInfo
-  public String probationLength;
-
-  @ColumnInfo
-  public String dateOfPermanent;
+  public long probationEndDate;
 
   public long getId() {
     return id;
@@ -62,11 +53,11 @@ public class UserAccount {
     this.email = email;
   }
 
-  public String getDateOfJoining() {
+  public long getDateOfJoining() {
     return dateOfJoining;
   }
 
-  public void setDateOfJoining(String dateOfJoining) {
+  public void setDateOfJoining(long dateOfJoining) {
     this.dateOfJoining = dateOfJoining;
   }
 
@@ -102,36 +93,12 @@ public class UserAccount {
     isNotificationOn = notificationOn;
   }
 
-  public String getProbationEndDate() {
+  public long getProbationEndDate() {
     return probationEndDate;
   }
 
-  public void setProbationEndDate(String probationEndDate) {
+  public void setProbationEndDate(long probationEndDate) {
     this.probationEndDate = probationEndDate;
-  }
-
-  public String getDuration() {
-    return duration;
-  }
-
-  public void setDuration(String duration) {
-    this.duration = duration;
-  }
-
-  public String getProbationLength() {
-    return probationLength;
-  }
-
-  public void setProbationLength(String probationLength) {
-    this.probationLength = probationLength;
-  }
-
-  public String getDateOfPermanent() {
-    return dateOfPermanent;
-  }
-
-  public void setDateOfPermanent(String dateOfPermanent) {
-    this.dateOfPermanent = dateOfPermanent;
   }
 
   public String getName() {
