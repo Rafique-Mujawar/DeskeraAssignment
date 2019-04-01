@@ -162,7 +162,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
             datePickerFragment.show(getActivity().getSupportFragmentManager(), DatePickerFragment
                 .TAG);
             break;
-
         }
       }
       return true;

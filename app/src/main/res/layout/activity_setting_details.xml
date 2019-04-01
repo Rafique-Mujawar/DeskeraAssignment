@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".activities.SettingDetailsActivity">
 
+    <include layout="@layout/deskera_toolbar" />
+
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
