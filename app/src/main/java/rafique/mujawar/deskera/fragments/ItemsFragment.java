@@ -44,6 +44,7 @@ public class ItemsFragment extends Fragment {
     TabLayout tabLayout = view.findViewById(R.id.item_tabs);
     ViewPager viewPager = view.findViewById(R.id.item_container);
     viewPager.setAdapter(itemPagerAdapter);
+    viewPager.setOffscreenPageLimit(1);
     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     return view;

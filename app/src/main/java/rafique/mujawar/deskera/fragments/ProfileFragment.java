@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_profile_new, container, false);
+    View view = inflater.inflate(R.layout.fragment_profile, container, false);
     initViews(view);
     setListeners();
     fetchData();
@@ -179,14 +179,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     if (actionId == EditorInfo.IME_ACTION_DONE) {
 
       switch (v.getId()) {
-        case R.id.et_user:
-          mUserAccount.setName(v.getText().toString().trim());
-          updateAccountDetails();
-          hideKeyboard();
-          break;
-
         case R.id.et_email:
-          //TODO: verify email
           if (Patterns.EMAIL_ADDRESS.matcher(v.getText().toString().trim()).matches()) {
             mUserAccount.setEmail(v.getText().toString().trim());
             updateAccountDetails();
@@ -224,7 +217,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   public void onDateSet(DatePicker view, int year, int month, int day) {
     // Do something with the date chosen by the user
     Log.i(TAG, "onDateSet: ");
-    //TODO: check for probation data
     final Calendar c = Calendar.getInstance();
     c.set(year, month, day);
     long newDate = c.getTimeInMillis();

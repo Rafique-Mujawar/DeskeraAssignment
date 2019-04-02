@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout = findViewById(R.id.tabs);
     ViewPager viewPager = findViewById(R.id.container);
     viewPager.setAdapter(mainPagerAdapter);
+    viewPager.setOffscreenPageLimit(1);
     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
       account.setName("Rafique");
       account.setTemperatureUnit(Temperature.CELSIUS.getValue());
       DatabaseManager.getDatabase().getUserAccountDao().addUserAccount(account);
-      Log.i(TAG, "loadJsonToDatabase: account added" );
+      Log.i(TAG, "loadJsonToDatabase: account added");
     }
   }
 

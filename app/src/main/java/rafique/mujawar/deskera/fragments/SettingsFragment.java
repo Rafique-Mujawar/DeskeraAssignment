@@ -102,8 +102,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
   public void onDateSet(DatePicker view, int year, int month, int day) {
     // Do something with the date chosen by the user
     Log.i(TAG, "onDateSet: ");
-
-    //TODO:: check for joining date
     final Calendar c = Calendar.getInstance();
     c.set(year, month, day);
     long newDate = c.getTimeInMillis();
