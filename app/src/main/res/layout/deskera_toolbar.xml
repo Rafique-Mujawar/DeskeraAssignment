@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:gravity="center_vertical"
     android:id="@+id/test_toolbar"
@@ -24,12 +23,13 @@
             android:layout_width="wrap_content"
             android:paddingBottom="@dimen/d8dp"
             android:paddingTop="@dimen/d8dp"
-            android:visibility="gone"
-            android:text="@string/back" />
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
-        <TextView
+        <ImageView
             android:contentDescription="@string/toolbar"
-            android:id="@+id/tv_toolbar_secondary"
+            android:id="@+id/iv_toolbar_secondary"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_height="48dp"

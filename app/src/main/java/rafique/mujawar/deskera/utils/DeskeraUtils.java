@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Random;
 
 import rafique.mujawar.deskera.BuildConfig;
 import rafique.mujawar.deskera.DeskeraApplication;
@@ -114,5 +115,17 @@ public class DeskeraUtils {
     Calendar calendar = Calendar.getInstance();
     calendar.setTimeInMillis(millis);
     return formatter.format(calendar.getTime());
+  }
+
+  public static String random() {
+    Random generator = new Random();
+    StringBuilder randomStringBuilder = new StringBuilder();
+    int randomLength = generator.nextInt(20);
+    char tempChar;
+    for (int i = 0; i < randomLength; i++) {
+      tempChar = (char) (generator.nextInt(96) + 32);
+      randomStringBuilder.append(tempChar);
+    }
+    return randomStringBuilder.toString();
   }
 }

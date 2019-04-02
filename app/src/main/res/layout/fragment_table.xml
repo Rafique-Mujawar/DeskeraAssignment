@@ -1,14 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent"
-    tools:context="rafique.mujawar.deskera.fragments.TableFragment">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <include
+        layout="@layout/deskera_toolbar"
+        android:id="@+id/test_toolbar" />
+
+    <android.support.v7.widget.SearchView
+        android:background="@drawable/rounded_border"
+        android:gravity="end"
+        android:id="@+id/searchView"
+        android:layout_below="@id/test_toolbar"
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_margin="@dimen/d16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/table"
-        android:textSize="24sp" />
+        android:visibility="visible"
+        app:closeIcon="@android:color/transparent"
+        app:iconifiedByDefault="false"
+        app:queryHint="@string/label_search" />
 
-</FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_below="@+id/searchView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+</RelativeLayout>

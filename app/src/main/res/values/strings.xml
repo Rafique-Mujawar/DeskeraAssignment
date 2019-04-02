@@ -55,4 +55,12 @@
     <string name="less_than_six_months">Less than 6 months</string>
     <string name="label_na">NA</string>
     <string name="back">Back</string>
+    <string name="label_search">Search</string>
+    <string name="done">Done</string>
+    <string name="delete_items">Delete Table Items</string>
+    <string name="selected">%d Selected</string>
+    <string name="plus_icon">+</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="dash">--</string>
 </resources>
