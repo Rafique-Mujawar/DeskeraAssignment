@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -125,6 +126,9 @@ public class DeskeraUtils {
     for (int i = 0; i < randomLength; i++) {
       tempChar = (char) (generator.nextInt(96) + 32);
       randomStringBuilder.append(tempChar);
+    }
+    if(TextUtils.isEmpty(randomStringBuilder.toString())){
+      random();
     }
     return randomStringBuilder.toString();
   }

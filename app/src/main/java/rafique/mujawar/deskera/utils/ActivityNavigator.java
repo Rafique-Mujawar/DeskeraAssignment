@@ -12,6 +12,7 @@ import rafique.mujawar.deskera.activities.SelectTemperatureUnitActivity;
 import rafique.mujawar.deskera.activities.SettingDetailsActivity;
 import rafique.mujawar.deskera.activities.TableEditActivity;
 import rafique.mujawar.deskera.activities.TableItemDetailsActivity;
+import rafique.mujawar.deskera.database.entities.TabletTabItem;
 
 /**
  * @author Rafique Mujawar
@@ -35,8 +36,10 @@ public class ActivityNavigator {
     context.startActivity(new Intent(context, TableEditActivity.class));
   }
 
-  public static void launchItemDetailsActivity(Context context) {
-    context.startActivity(new Intent(context, TableItemDetailsActivity.class));
+  public static void launchItemDetailsActivity(Context context, TabletTabItem item) {
+    Intent intent = new Intent(context, TableItemDetailsActivity.class);
+    intent.putExtra(DeskeraConstants.ARG_TABLE_ITEM, item);
+    context.startActivity(intent);
   }
 
   public static void openCameraIntent(Fragment fragment, Uri profileImageUri) {

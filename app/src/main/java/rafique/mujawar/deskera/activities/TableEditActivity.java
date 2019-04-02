@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import rafique.mujawar.deskera.R;
@@ -16,14 +18,14 @@ import rafique.mujawar.deskera.adapters.EditableTableAdapter;
 import rafique.mujawar.deskera.database.DatabaseManager;
 import rafique.mujawar.deskera.database.entities.TabletTabItem;
 import rafique.mujawar.deskera.eventbus.BusProvider;
-import rafique.mujawar.deskera.eventbus.ItemDeleteEvent;
-import rafique.mujawar.deskera.listeners.AddCheckBoxCheckdListener;
+import rafique.mujawar.deskera.eventbus.TableItemModifiedEvent;
+import rafique.mujawar.deskera.listeners.IAddCheckBoxCheckdListener;
 
 /**
  * @author Rafique Mujawar
  * Date 02-04-2019
  */
-public class TableEditActivity extends AppCompatActivity implements AddCheckBoxCheckdListener,
+public class TableEditActivity extends AppCompatActivity implements IAddCheckBoxCheckdListener,
     View.OnClickListener {
 
   private static final String TAG = TableEditActivity.class.getSimpleName();
@@ -71,6 +73,12 @@ public class TableEditActivity extends AppCompatActivity implements AddCheckBoxC
 
   private void loadData() {
     mTableItemList = DatabaseManager.getDatabase().getTabletTabItemDao().getAll();
+    Collections.sort(mTableItemList, new Comparator<TabletTabItem>() {
+      @Override
+      public int compare(TabletTabItem item1, TabletTabItem item2) {
+        return item1.getName().compareToIgnoreCase(item2.getName());
+      }
+    });
     mEditTableAdapter.setTableDataList(mTableItemList);
   }
 
@@ -101,7 +109,7 @@ public class TableEditActivity extends AppCompatActivity implements AddCheckBoxC
     List<TabletTabItem> deleteList = mEditTableAdapter.getDeleteItemList();
     if (null != deleteList && !deleteList.isEmpty()) {
       DatabaseManager.getDatabase().getTabletTabItemDao().deleteMultiples(deleteList);
-      BusProvider.getInstance().post(new ItemDeleteEvent(TAG));
+      BusProvider.getInstance().post(new TableItemModifiedEvent());
       mTableItemList.removeAll(deleteList);
       mEditTableAdapter.setTableDataList(mTableItemList);
       mEditTableAdapter.getDeleteItemList().clear();

@@ -12,6 +12,7 @@ import java.util.List;
 
 import rafique.mujawar.deskera.R;
 import rafique.mujawar.deskera.database.entities.TabletTabItem;
+import rafique.mujawar.deskera.listeners.ITableItemListener;
 import rafique.mujawar.deskera.viewholders.TableViewHolder;
 
 /**
@@ -21,10 +22,10 @@ import rafique.mujawar.deskera.viewholders.TableViewHolder;
 public class TableItemsAdapter extends RecyclerView.Adapter<TableViewHolder> implements Filterable {
   private List<TabletTabItem> mSearchedTableItems;
   private List<TabletTabItem> mTableItemsAll;
+  private ITableItemListener mListener;
 
-
-  public TableItemsAdapter() {
-
+  public TableItemsAdapter(ITableItemListener listener) {
+    this.mListener = listener;
   }
 
   public void setTableItemsList(List<TabletTabItem> items) {
@@ -45,6 +46,15 @@ public class TableItemsAdapter extends RecyclerView.Adapter<TableViewHolder> imp
     holder.getTitleTextView().setText(mSearchedTableItems.get(position).getName());
     holder.getCheckBox().setVisibility(View.GONE);
     holder.getCheckBox().setChecked(false);
+
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (null != mListener) {
+          mListener.onTableItemSelect(mSearchedTableItems.get(holder.getAdapterPosition()));
+        }
+      }
+    });
   }
 
   @Override

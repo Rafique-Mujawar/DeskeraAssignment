@@ -21,10 +21,10 @@ import rafique.mujawar.deskera.database.DatabaseManager;
 import rafique.mujawar.deskera.database.entities.DeskeraItem;
 import rafique.mujawar.deskera.eventbus.BusProvider;
 import rafique.mujawar.deskera.eventbus.FavouriteListChangedEvent;
-import rafique.mujawar.deskera.listeners.DeskeraItemListener;
+import rafique.mujawar.deskera.listeners.IDeskeraItemListener;
 
 
-public class FavoritesFragment extends Fragment implements DeskeraItemListener {
+public class FavoritesFragment extends Fragment implements IDeskeraItemListener {
   final String TAG = this.getClass().getSimpleName();
   protected RecyclerView mRecyclerView;
   protected TextView mTvEmptyList, mTvTitle;

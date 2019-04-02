@@ -14,7 +14,7 @@ import java.util.List;
 
 import rafique.mujawar.deskera.R;
 import rafique.mujawar.deskera.database.entities.DeskeraItem;
-import rafique.mujawar.deskera.listeners.DeskeraItemListener;
+import rafique.mujawar.deskera.listeners.IDeskeraItemListener;
 import rafique.mujawar.deskera.viewholders.ItemViewHolder;
 
 /**
@@ -23,11 +23,11 @@ import rafique.mujawar.deskera.viewholders.ItemViewHolder;
  */
 public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
-  private DeskeraItemListener mListener;
+  private IDeskeraItemListener mListener;
   private List<DeskeraItem> items;
   private Context context;
 
-  public ItemAdapter(Context context, DeskeraItemListener listener) {
+  public ItemAdapter(Context context, IDeskeraItemListener listener) {
     this.context = context;
     this.mListener = listener;
   }

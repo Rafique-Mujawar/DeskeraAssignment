@@ -63,4 +63,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="dash">--</string>
+    <string name="empty" />
+    <string name="label_save">Save</string>
+    <string name="empty_text">Empty text is not allowed</string>
 </resources>

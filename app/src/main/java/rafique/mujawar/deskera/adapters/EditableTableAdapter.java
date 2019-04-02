@@ -11,7 +11,7 @@ import java.util.List;
 
 import rafique.mujawar.deskera.R;
 import rafique.mujawar.deskera.database.entities.TabletTabItem;
-import rafique.mujawar.deskera.listeners.AddCheckBoxCheckdListener;
+import rafique.mujawar.deskera.listeners.IAddCheckBoxCheckdListener;
 import rafique.mujawar.deskera.viewholders.TableViewHolder;
 
 /**
@@ -21,9 +21,9 @@ import rafique.mujawar.deskera.viewholders.TableViewHolder;
 public class EditableTableAdapter extends RecyclerView.Adapter<TableViewHolder> {
   private List<TabletTabItem> tableDataList;
   private List<TabletTabItem> mDeleteDataList;
-  private AddCheckBoxCheckdListener checkdListener;
+  private IAddCheckBoxCheckdListener checkdListener;
 
-  public EditableTableAdapter(AddCheckBoxCheckdListener checkdListener) {
+  public EditableTableAdapter(IAddCheckBoxCheckdListener checkdListener) {
     this.checkdListener = checkdListener;
   }
 

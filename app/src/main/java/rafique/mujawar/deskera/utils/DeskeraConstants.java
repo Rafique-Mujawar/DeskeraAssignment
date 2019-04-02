@@ -11,6 +11,7 @@ public interface DeskeraConstants {
   String IMAGE_FOLDER = "/DeskeraProfile/";
   String IMAGE_TYPE = "image/*";
   String ARG_UNIT = "arg_unit";
+  String ARG_TABLE_ITEM = "ARG_TABLE_ITEM";
   String DESKERA_DATE_FORMAT = "dd/M/yyyy";
 
   long SECONDS_TO_MILLIS = 1000;
