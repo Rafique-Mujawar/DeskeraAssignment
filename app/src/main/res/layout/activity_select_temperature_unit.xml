@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:padding="@dimen/d6dp"
+        android:padding="@dimen/d16dp"
         android:text="@string/label_fahrenheit" />
 
     <TextView
@@ -25,6 +25,6 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:padding="@dimen/d6dp"
+        android:padding="@dimen/d16dp"
         android:text="@string/label_celsius" />
 </LinearLayout>

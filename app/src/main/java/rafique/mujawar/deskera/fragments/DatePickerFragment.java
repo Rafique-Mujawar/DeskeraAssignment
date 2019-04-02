@@ -35,12 +35,13 @@ public class DatePickerFragment extends DialogFragment {
     this.mListener = mListener;
   }
 
+
   @Override
   public Dialog onCreateDialog(Bundle bundle) {
     // Use the current date as the default date in the picker
     final Calendar c = Calendar.getInstance();
-    if (null != bundle && bundle.containsKey(DeskeraConstants.ARG_DATE_IN_MILLS)) {
-      c.setTimeInMillis(bundle.getLong(DeskeraConstants.ARG_DATE_IN_MILLS));
+    if (null != getArguments() && getArguments().containsKey(DeskeraConstants.ARG_DATE_IN_MILLS)) {
+      c.setTimeInMillis(getArguments().getLong(DeskeraConstants.ARG_DATE_IN_MILLS));
     }
     int year = c.get(Calendar.YEAR);
     int month = c.get(Calendar.MONTH);

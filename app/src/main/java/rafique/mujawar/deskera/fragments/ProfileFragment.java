@@ -3,6 +3,7 @@ package rafique.mujawar.deskera.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -120,7 +121,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
       case R.id.et_doj:
         DatePickerFragment datePickerFragment =
             DatePickerFragment.getInstance(this, mUserAccount
-                .getProbationEndDate());
+                .getDateOfJoining());
         datePickerFragment.show(getActivity().getSupportFragmentManager(), DatePickerFragment
             .TAG);
         break;
@@ -148,6 +149,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         case R.id.et_user:
           mUserAccount.setName(v.getText().toString().trim());
           updateAccountDetails();
+          hideKeyboard();
           break;
 
         case R.id.et_email:
@@ -156,6 +158,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
             mUserAccount.setEmail(v.getText().toString().trim());
             updateAccountDetails();
             v.clearFocus();
+            hideKeyboard();
           } else {
             mEtEmail.setError("Invalid email format.");
           }
@@ -165,11 +168,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
           mUserAccount.setHobbies(v.getText().toString().trim());
           updateAccountDetails();
           v.clearFocus();
+          hideKeyboard();
           break;
       }
       return true;
     }
     return false;
+  }
+
+  private void hideKeyboard() {
+    if (null != getActivity() && null != getActivity().getCurrentFocus()) {
+      InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context
+          .INPUT_METHOD_SERVICE);
+      if (null != inputManager) {
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+            InputMethodManager.HIDE_NOT_ALWAYS);
+      }
+    }
   }
 
   @Override
@@ -210,7 +225,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                          @NonNull int[] grantResults) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    Log.i(TAG, "onRequestPermissionsResult: ");
     switch (requestCode) {
       case DeskeraConstants.RequestCodes.PERMISSIONS_REQUEST_WRITE_STORAGE:
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -229,18 +244,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
    * Open Chooser to select Camera,Gallery
    */
   private void selectImageDialog() {
-    if (ContextCompat.checkSelfPermission(getContext(),
+    Log.i(TAG, "selectImageDialog: ");
+    if (ActivityCompat.checkSelfPermission(getContext(),
         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-      if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-          Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      Log.i(TAG, "selectImageDialog: 2");
+      if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(R.string.info_storage_permission);
         builder.setTitle(R.string.title_permission_required);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            ActivityCompat.requestPermissions(getActivity(),
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 DeskeraConstants.RequestCodes.PERMISSIONS_REQUEST_WRITE_STORAGE);
           }
         });
@@ -253,12 +268,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         });
         builder.create().show();
       } else {
-        ActivityCompat.requestPermissions(getActivity(), new String[]{
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            },
+        Log.i(TAG, "selectImageDialog: 3");
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
             DeskeraConstants.RequestCodes.PERMISSIONS_REQUEST_WRITE_STORAGE);
       }
     } else {
+      Log.i(TAG, "selectImageDialog: 4");
       openChooser();
     }
   }
