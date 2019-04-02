@@ -52,6 +52,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
 
   private ImageView mIvProfileImage;
   private EditText mEtUserName, mEtEmail, mEtHobby, mEtDOJ;
+  /*private Toolbar mToolbar;
+  private AppBarLayout mAppBarLayout;
+  private ImageView mIvToolbarProfile;*/
+
   private Uri mCameraImageUti;
   private UserAccount mUserAccount;
 
@@ -76,6 +80,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     mEtEmail = view.findViewById(R.id.et_email);
     mEtHobby = view.findViewById(R.id.et_hobby);
     mEtDOJ = view.findViewById(R.id.et_doj);
+/*
+    mIvToolbarProfile = view.findViewById(R.id.iv_toolbar_profile);
+    mToolbar = view.findViewById(R.id.toolbar);
+    mAppBarLayout = view.findViewById(R.id.app_bar);*/
   }
 
   private void setListeners() {
@@ -84,11 +92,32 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     mEtEmail.setOnEditorActionListener(this);
     mEtDOJ.setOnClickListener(this);
     mEtHobby.setOnEditorActionListener(this);
+    /*mIvToolbarProfile.setOnClickListener(this);
+
+    mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+      boolean isShow = false;
+      int scrollRange = -1;
+
+      @Override
+      public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        if (scrollRange == -1) {
+          scrollRange = appBarLayout.getTotalScrollRange();
+        }
+        if (scrollRange + verticalOffset <= 1) {
+          isShow = true;
+          mIvToolbarProfile.setVisibility(View.VISIBLE);
+        } else if (isShow) {
+          isShow = false;
+          mIvToolbarProfile.setVisibility(View.GONE);
+        }
+      }
+    });*/
   }
 
   private void fetchData() {
     mUserAccount = DatabaseManager.getDatabase().getUserAccountDao().getUserAccount(0);
     if (null != mUserAccount) {
+      /* mToolbar.setTitle(mUserAccount.getName());*/
       mEtUserName.setText(mUserAccount.getName());
       mEtEmail.setText(mUserAccount.getEmail());
       mEtHobby.setText(mUserAccount.getHobbies());
@@ -105,6 +134,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     Glide.with(getContext()).
         load(uri).apply(new RequestOptions()
         .transform(new CircleCrop())).into(mIvProfileImage);
+
+    /*Glide.with(getContext()).
+        load(uri).apply(new RequestOptions()
+        .transform(new CircleCrop())).into(mIvToolbarProfile);*/
   }
 
   /**
@@ -115,6 +148,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
+      /*case R.id.iv_toolbar_profile:*/
       case R.id.iv_profile:
         selectImageDialog();
         break;

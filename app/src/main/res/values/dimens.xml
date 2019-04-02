@@ -13,6 +13,7 @@
     <dimen name="s20sp">20sp</dimen>
     <dimen name="s16sp">16sp</dimen>
     <dimen name="normal_image_size">60dp</dimen>
+    <dimen name="big_image_size">120dp</dimen>
     <dimen name="small_image_size">40dp</dimen>
     <dimen name="s22sp">22sp</dimen>
     <dimen name="d6dp">6dp</dimen>
