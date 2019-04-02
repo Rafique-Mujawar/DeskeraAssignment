@@ -37,6 +37,17 @@ public class UserAccount {
   @ColumnInfo
   public long probationEndDate;
 
+  @ColumnInfo
+  public String imageUri;
+
+  public String getImageUri() {
+    return imageUri;
+  }
+
+  public void setImageUri(String imageUri) {
+    this.imageUri = imageUri;
+  }
+
   public long getId() {
     return id;
   }

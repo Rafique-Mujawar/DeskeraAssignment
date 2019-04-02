@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
@@ -80,7 +81,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     mIvProfileImage.setOnClickListener(this);
     mEtUserName.setOnEditorActionListener(this);
     mEtEmail.setOnEditorActionListener(this);
-    mEtDOJ.setOnEditorActionListener(this);
+    mEtDOJ.setOnClickListener(this);
     mEtHobby.setOnEditorActionListener(this);
   }
 
@@ -92,6 +93,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
       mEtHobby.setText(mUserAccount.getHobbies());
       if (0 != mUserAccount.getDateOfJoining()) {
         mEtDOJ.setText(DeskeraUtils.getDateFromMillis(mUserAccount.getDateOfJoining()));
+      }
+      if (!TextUtils.isEmpty(mUserAccount.getImageUri())) {
+        setProfileImage(Uri.parse(mUserAccount.getImageUri()));
       }
     }
   }
@@ -113,6 +117,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
       case R.id.iv_profile:
         selectImageDialog();
         break;
+      case R.id.et_doj:
+        DatePickerFragment datePickerFragment =
+            DatePickerFragment.getInstance(this, mUserAccount
+                .getProbationEndDate());
+        datePickerFragment.show(getActivity().getSupportFragmentManager(), DatePickerFragment
+            .TAG);
+        break;
 
     }
   }
@@ -133,36 +144,28 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
     if (actionId == EditorInfo.IME_ACTION_DONE) {
 
-      if (0 != v.getText().length()) {
-        //TODO: update
-        switch (v.getId()) {
-          case R.id.et_user:
-            mUserAccount.setName(v.getText().toString().trim());
+      switch (v.getId()) {
+        case R.id.et_user:
+          mUserAccount.setName(v.getText().toString().trim());
+          updateAccountDetails();
+          break;
+
+        case R.id.et_email:
+          //TODO: verify email
+          if (Patterns.EMAIL_ADDRESS.matcher(v.getText().toString().trim()).matches()) {
+            mUserAccount.setEmail(v.getText().toString().trim());
             updateAccountDetails();
-            break;
+            v.clearFocus();
+          } else {
+            mEtEmail.setError("Invalid email format.");
+          }
+          break;
 
-          case R.id.et_email:
-            //TODO: verify email
-            if (Patterns.EMAIL_ADDRESS.matcher(v.getText().toString().trim()).matches()) {
-              updateAccountDetails();
-            } else {
-              mEtEmail.setError("Invalid email format.");
-            }
-            break;
-
-          case R.id.et_hobby:
-            mUserAccount.setHobbies(v.getText().toString().trim());
-            updateAccountDetails();
-            break;
-
-          case R.id.et_doj:
-            DatePickerFragment datePickerFragment =
-                DatePickerFragment.getInstance(this, mUserAccount
-                    .getProbationEndDate());
-            datePickerFragment.show(getActivity().getSupportFragmentManager(), DatePickerFragment
-                .TAG);
-            break;
-        }
+        case R.id.et_hobby:
+          mUserAccount.setHobbies(v.getText().toString().trim());
+          updateAccountDetails();
+          v.clearFocus();
+          break;
       }
       return true;
     }
@@ -178,8 +181,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
     c.set(year, month, day);
     long newDate = c.getTimeInMillis();
     mUserAccount.setDateOfJoining(newDate);
-    DatabaseManager.getDatabase().getUserAccountDao().updateUserAccount(mUserAccount);
     mEtDOJ.setText(DeskeraUtils.getDateFromMillis(newDate));
+    updateAccountDetails();
   }
 
   @Override
@@ -189,12 +192,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         case DeskeraConstants.RequestCodes.REQUEST_CAMERA:
           if (null != mCameraImageUti) {
             setProfileImage(mCameraImageUti);
+            mUserAccount.setImageUri(mCameraImageUti.toString());
+            updateAccountDetails();
           }
-          Log.i(TAG, "onActivityResult: " + mCameraImageUti);
           break;
         case DeskeraConstants.RequestCodes.REQUEST_GALLERY:
           if (null != data && null != data.getData()) {
+            mUserAccount.setImageUri(data.getData().toString());
             setProfileImage(data.getData());
+            updateAccountDetails();
           }
           break;
       }
