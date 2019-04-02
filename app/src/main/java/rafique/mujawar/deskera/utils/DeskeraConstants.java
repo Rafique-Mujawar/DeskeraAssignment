@@ -5,7 +5,7 @@ package rafique.mujawar.deskera.utils;
  * Date 29-03-2019
  */
 public interface DeskeraConstants {
-  long SPLASH_DURATION_MILLIS = 500;
+  long SPLASH_DURATION_MILLIS = 3 * 1000;
   String JPG_EXTENSION = ".jpg";
   String PROVIDER = ".provider";
   String IMAGE_FOLDER = "/DeskeraProfile/";

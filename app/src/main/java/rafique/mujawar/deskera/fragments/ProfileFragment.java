@@ -10,10 +10,12 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -50,11 +52,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   public ProfileFragment() {
   }
 
-  private ImageView mIvProfileImage;
-  private EditText mEtUserName, mEtEmail, mEtHobby, mEtDOJ;
-  /*private Toolbar mToolbar;
+  private ImageView mIvProfileImage, mIvToolbarProfile;
+  private EditText mEtEmail, mEtHobby, mEtDOJ;
   private AppBarLayout mAppBarLayout;
-  private ImageView mIvToolbarProfile;*/
+  private Toolbar mToolbar;
 
   private Uri mCameraImageUti;
   private UserAccount mUserAccount;
@@ -67,7 +68,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_profile, container, false);
+    View view = inflater.inflate(R.layout.fragment_profile_new, container, false);
     initViews(view);
     setListeners();
     fetchData();
@@ -76,23 +77,20 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
 
   private void initViews(View view) {
     mIvProfileImage = view.findViewById(R.id.iv_profile);
-    mEtUserName = view.findViewById(R.id.et_user);
     mEtEmail = view.findViewById(R.id.et_email);
     mEtHobby = view.findViewById(R.id.et_hobby);
     mEtDOJ = view.findViewById(R.id.et_doj);
-/*
     mIvToolbarProfile = view.findViewById(R.id.iv_toolbar_profile);
     mToolbar = view.findViewById(R.id.toolbar);
-    mAppBarLayout = view.findViewById(R.id.app_bar);*/
+    mAppBarLayout = view.findViewById(R.id.app_bar);
   }
 
   private void setListeners() {
     mIvProfileImage.setOnClickListener(this);
-    mEtUserName.setOnEditorActionListener(this);
     mEtEmail.setOnEditorActionListener(this);
     mEtDOJ.setOnClickListener(this);
     mEtHobby.setOnEditorActionListener(this);
-    /*mIvToolbarProfile.setOnClickListener(this);
+    mIvToolbarProfile.setOnClickListener(this);
 
     mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
       boolean isShow = false;
@@ -103,22 +101,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         if (scrollRange == -1) {
           scrollRange = appBarLayout.getTotalScrollRange();
         }
-        if (scrollRange + verticalOffset <= 1) {
+        if (scrollRange + verticalOffset <= 5) {
           isShow = true;
           mIvToolbarProfile.setVisibility(View.VISIBLE);
+          mIvProfileImage.setVisibility(View.GONE);
         } else if (isShow) {
           isShow = false;
+          mIvProfileImage.setVisibility(View.VISIBLE);
           mIvToolbarProfile.setVisibility(View.GONE);
         }
       }
-    });*/
+    });
   }
 
   private void fetchData() {
     mUserAccount = DatabaseManager.getDatabase().getUserAccountDao().getUserAccount(0);
     if (null != mUserAccount) {
-      /* mToolbar.setTitle(mUserAccount.getName());*/
-      mEtUserName.setText(mUserAccount.getName());
+      mToolbar.setTitle(mUserAccount.getName());
       mEtEmail.setText(mUserAccount.getEmail());
       mEtHobby.setText(mUserAccount.getHobbies());
       if (0 != mUserAccount.getDateOfJoining()) {
@@ -135,9 +134,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
         load(uri).apply(new RequestOptions()
         .transform(new CircleCrop())).into(mIvProfileImage);
 
-    /*Glide.with(getContext()).
+    Glide.with(getContext()).
         load(uri).apply(new RequestOptions()
-        .transform(new CircleCrop())).into(mIvToolbarProfile);*/
+        .transform(new CircleCrop())).into(mIvToolbarProfile);
   }
 
   /**
@@ -148,7 +147,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener,
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
-      /*case R.id.iv_toolbar_profile:*/
+      case R.id.iv_toolbar_profile:
       case R.id.iv_profile:
         selectImageDialog();
         break;
