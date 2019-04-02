@@ -14,10 +14,13 @@
         android:layout_width="match_parent" />
 
     <Button
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
         android:id="@+id/btnDelete"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/toolbar_height"
         android:layout_width="match_parent"
-        android:text="@string/delete" />
+        android:text="@string/delete"
+        android:textColor="@color/white" />
 </RelativeLayout>
