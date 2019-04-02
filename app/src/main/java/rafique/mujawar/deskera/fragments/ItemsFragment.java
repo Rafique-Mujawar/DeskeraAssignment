@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import rafique.mujawar.deskera.R;
 
@@ -38,6 +39,8 @@ public class ItemsFragment extends Fragment {
     ItemPagerAdapter itemPagerAdapter = new ItemPagerAdapter(getActivity()
         .getSupportFragmentManager());
 
+    TextView tvTitle = view.findViewById(R.id.toolbar_title);
+    tvTitle.setText(R.string.items);
     TabLayout tabLayout = view.findViewById(R.id.item_tabs);
     ViewPager viewPager = view.findViewById(R.id.item_container);
     viewPager.setAdapter(itemPagerAdapter);
