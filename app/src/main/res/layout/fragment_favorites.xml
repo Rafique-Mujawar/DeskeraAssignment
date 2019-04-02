@@ -1,14 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rafique.mujawar.deskera.fragments.FavoritesFragment">
+    android:layout_width="match_parent"
+    tools:context=".fragments.AllItemsFragment">
+
+    <include layout="@layout/deskera_toolbar" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/favorites"
-        android:textSize="24sp" />
+        android:id="@+id/tv_empty"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/empty_list" />
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvItems"
+        android:layout_below="@id/test_toolbar"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/d6dp"
+        android:layout_width="match_parent" />
+</RelativeLayout>

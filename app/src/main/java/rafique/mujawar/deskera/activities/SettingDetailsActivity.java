@@ -2,7 +2,14 @@ package rafique.mujawar.deskera.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 
 import rafique.mujawar.deskera.R;
 import rafique.mujawar.deskera.database.DatabaseManager;
@@ -10,17 +17,26 @@ import rafique.mujawar.deskera.database.entities.UserAccount;
 import rafique.mujawar.deskera.utils.DeskeraConstants;
 import rafique.mujawar.deskera.utils.DeskeraUtils;
 
-public class SettingDetailsActivity extends AppCompatActivity {
+public class SettingDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-  TextView tvUserName, tvEmail, tvDoj, tvTemperature, tvSound, tvNotification, tvProbationEnd,
-      tvDuration, tvPermanentDate, tvProbationLength;
+  private TextView tvUserName, tvEmail, tvDoj, tvTemperature, tvSound, tvNotification,
+      tvProbationEnd,
+      tvDuration, tvPermanentDate, tvProbationLength, tvHobbies, tvBack, tvTitle;
+  private ImageView ivProfile;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_setting_details);
     initViews();
+    initListeners();
     setUpData();
+  }
+
+  private void initListeners() {
+    tvBack.setVisibility(View.VISIBLE);
+    tvTitle.setVisibility(View.VISIBLE);
+    tvBack.setOnClickListener(this);
   }
 
   private void initViews() {
@@ -34,6 +50,10 @@ public class SettingDetailsActivity extends AppCompatActivity {
     tvDuration = findViewById(R.id.tvDuration);
     tvPermanentDate = findViewById(R.id.tvPermanentDate);
     tvProbationLength = findViewById(R.id.tvProbationLength);
+    tvHobbies = findViewById(R.id.tvHobbies);
+    ivProfile = findViewById(R.id.iv_profile);
+    tvBack = findViewById(R.id.tv_toolbar_primary);
+    tvTitle = findViewById(R.id.toolbar_title);
   }
 
   private void setUpData() {
@@ -45,7 +65,6 @@ public class SettingDetailsActivity extends AppCompatActivity {
     tvNotification.setText(String.valueOf(account.isNotificationOn));
     tvProbationEnd.setText(getDateTextIfValid(account.getProbationEndDate()));
     tvDoj.setText(getDateTextIfValid(account.getDateOfJoining()));
-
     String duration = getString(R.string.label_na);
     String length = getString(R.string.label_na);
     if (0 != account.getDateOfJoining() && 0 != account.getProbationEndDate()) {
@@ -54,6 +73,7 @@ public class SettingDetailsActivity extends AppCompatActivity {
       length = DeskeraUtils.getProbationLength(account.getDateOfJoining(),
           account.getProbationEndDate());
     }
+    tvHobbies.setText(account.getHobbies());
     tvProbationLength.setText(length);
     tvDuration.setText(duration);
     if (0 != account.getProbationEndDate()) {
@@ -62,6 +82,12 @@ public class SettingDetailsActivity extends AppCompatActivity {
               account.getProbationEndDate() + DeskeraConstants.DAYS_TO_MILLIS));
     } else {
       tvPermanentDate.setText(R.string.date_not_available);
+    }
+
+    if (!TextUtils.isEmpty(account.getImageUri())) {
+      Glide.with(this).
+          load(account.getImageUri()).apply(new RequestOptions()
+          .transform(new CircleCrop())).into(ivProfile);
     }
   }
 
@@ -73,4 +99,17 @@ public class SettingDetailsActivity extends AppCompatActivity {
     return dateText;
   }
 
+  /**
+   * Called when a view has been clicked.
+   *
+   * @param v The view that was clicked.
+   */
+  @Override
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.tv_toolbar_primary:
+        onBackPressed();
+        break;
+    }
+  }
 }

@@ -14,6 +14,9 @@
     <string name="label_email">E-mail</string>
     <string name="label_hobby">Hobby</string>
     <string name="label_doj">Date of joining</string>
+    <string name="label_hint_email">Add email</string>
+    <string name="label_hint_hobby">Add Hobby</string>
+    <string name="label_hint_doj">Add Date of joining</string>
     <string name="label_username">Username</string>
     <string name="description_profile_image">profile image</string>
     <string name="description_item_image">Item image</string>

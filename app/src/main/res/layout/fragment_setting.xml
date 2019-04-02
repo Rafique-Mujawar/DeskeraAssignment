@@ -5,18 +5,10 @@
     android:orientation="vertical"
     tools:context="rafique.mujawar.deskera.fragments.SettingsFragment">
 
-    <TextView
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_height="48dp"
-        android:layout_width="match_parent"
-        android:text="@string/setting"
-        android:textSize="@dimen/s22sp"
-        android:textStyle="bold" />
-
+    <include layout="@layout/deskera_toolbar" />
 
     <RelativeLayout
-        android:background="@color/white"
+        android:background="@drawable/rectangular_colored_border"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical">
@@ -43,7 +35,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@color/white"
+        android:background="@drawable/rectangular_colored_border"
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -68,11 +60,11 @@
     </RelativeLayout>
 
     <View
-        android:layout_height="48dp"
+        android:layout_height="@dimen/toolbar_height"
         android:layout_width="match_parent" />
 
     <RelativeLayout
-        android:background="@color/white"
+        android:background="@drawable/rectangular_colored_border"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:padding="@dimen/d16dp">
@@ -98,7 +90,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@color/white"
+        android:background="@drawable/rectangular_colored_border"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical">
@@ -125,11 +117,11 @@
     </RelativeLayout>
 
     <View
-        android:layout_height="48dp"
+        android:layout_height="@dimen/toolbar_height"
         android:layout_width="match_parent" />
 
     <TextView
-        android:background="@color/white"
+        android:background="@drawable/rectangular_colored_border"
         android:id="@+id/tv_view_details"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

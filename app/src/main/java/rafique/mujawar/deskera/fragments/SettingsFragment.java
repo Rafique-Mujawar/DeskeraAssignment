@@ -28,7 +28,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
     CompoundButton.OnCheckedChangeListener, DatePickerDialog.OnDateSetListener {
 
   private static final String TAG = SettingsFragment.class.getName();
-  private TextView tvTemperature, tvProbationDate;
+  private TextView tvTemperature, tvProbationDate, mTvTitle;
   private Switch soundSwitch, notificationSwitch;
   private static UserAccount mUserAccount;
 
@@ -51,6 +51,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
     soundSwitch = view.findViewById(R.id.switch_sound);
     tvProbationDate = view.findViewById(R.id.tv_probation_date);
     tvTemperature = view.findViewById(R.id.tv_temperature);
+    mTvTitle = view.findViewById(R.id.toolbar_title);
   }
 
 
@@ -62,6 +63,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener,
   }
 
   private void loadData() {
+    mTvTitle.setText(R.string.setting);
     mUserAccount = DatabaseManager.getDatabase().getUserAccountDao().getUserAccount(0);
     tvTemperature.setText(mUserAccount.getTemperatureUnit());
     String date = getString(R.string.date_not_available);

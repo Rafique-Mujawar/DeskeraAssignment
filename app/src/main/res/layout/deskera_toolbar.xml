@@ -17,7 +17,7 @@
         android:layout_width="match_parent">
 
         <TextView
-            android:id="@+id/iv_toolbar_primary"
+            android:id="@+id/tv_toolbar_primary"
             android:layout_alignParentStart="true"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/d16dp"
@@ -25,18 +25,19 @@
             android:paddingBottom="@dimen/d8dp"
             android:paddingTop="@dimen/d8dp"
             android:visibility="gone"
-            tools:text="back" />
+            android:text="@string/back" />
 
-        <ImageView
+        <TextView
             android:contentDescription="@string/toolbar"
-            android:id="@+id/iv_toolbar_secondary"
+            android:id="@+id/tv_toolbar_secondary"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_height="48dp"
             android:layout_marginEnd="@dimen/d16dp"
             android:layout_width="wrap_content"
             android:paddingBottom="@dimen/d8dp"
-            android:paddingTop="@dimen/d8dp" />
+            android:paddingTop="@dimen/d8dp"
+            android:visibility="gone" />
 
 
         <TextView
